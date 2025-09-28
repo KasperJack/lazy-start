@@ -44,9 +44,7 @@ func startHandler(w http.ResponseWriter, r *http.Request) {
     serviceName := vars["service"]
     
 
-
-
-
+   
     svc, ok := GetService(serviceName)
     if !ok {
         http.Error(w, "Service not found", http.StatusNotFound)
