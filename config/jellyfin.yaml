@@ -1,0 +1,23 @@
+name: "jellyfin"
+
+health:
+  check_url: "http://localhost:8096/health"
+  timeout: 5s
+
+lifecycle:
+  start:
+    method: "systemctl"
+    command: "jellyfin.service"
+    use_sudo: true
+    timeout: 30s
+
+  stop:
+    method: "systemctl"
+    command: "jellyfin.service"
+    use_sudo: true
+    timeout: 15s
+
+auto_stop:
+  enabled: true
+  idle_timeout: "1h30m"     # Stop after 1.5 hours of no requests
+  check_interval: "5m"      # Check every 5 minutes if service should stop

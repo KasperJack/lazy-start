@@ -9,13 +9,33 @@ import (
     "net/http"
 
     "github.com/gorilla/mux"
+
+
+    "lazy-start/runtimeconfig"
 )
+
+
+
 
 
 
 var tmpl = template.Must(template.ParseFiles("templates/index.html"))
 
 func main() {
+
+
+
+    runtimeconfig.LoadAppConfig()
+
+    log.Panicln(runtimeconfig.App.Server.Host)
+    log.Panicln(runtimeconfig.App.Server.Port)
+    log.Panicln(runtimeconfig.App.Paths.ConfigDir)
+    log.Panicln(runtimeconfig.App.Paths.LogsDir)
+    return
+
+
+
+
     err := LoadServiceConfigs("services.json")
     if err != nil {
         log.Fatalf("Error loading configs: %v", err)

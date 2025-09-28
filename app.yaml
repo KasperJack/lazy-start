@@ -1,0 +1,7 @@
+server:
+  host: "127.0.0.1"
+  port: 7712
+
+paths:
+  config_dir: "./config"     # Where service configs are
+  logs_dir: "./logs"         # Where proxy logs go
