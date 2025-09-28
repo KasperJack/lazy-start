@@ -1,4 +1,4 @@
-package http
+package httphandler
 
 
 import (
@@ -13,3 +13,5 @@ func RegisterRoutes (r *mux.Router){
 	r.HandleFunc("/start/{service}", startHandler).Methods("GET")
 
 } 
+
+

@@ -4,7 +4,6 @@ package main
 
 import (
     "fmt"
-    "html/template"
     "log"
     "net/http"
 
@@ -12,10 +11,11 @@ import (
 
 
     "lazy-start/runtimeconfig"
+    "lazy-start/httpHandler"
+
 )
 
 
-var tmpl = template.Must(template.ParseFiles("templates/index.html"))
 
 func main() {
 
@@ -39,7 +39,7 @@ func main() {
 
 
     r := mux.NewRouter()
-
+    httphandler.RegisterRoutes(r)
 
 
 
