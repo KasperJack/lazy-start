@@ -15,10 +15,6 @@ import (
 )
 
 
-
-
-
-
 var tmpl = template.Must(template.ParseFiles("templates/index.html"))
 
 func main() {
@@ -27,11 +23,11 @@ func main() {
 
     runtimeconfig.LoadAppConfig()
 
-    log.Panicln(runtimeconfig.App.Server.Host)
-    log.Panicln(runtimeconfig.App.Server.Port)
-    log.Panicln(runtimeconfig.App.Paths.ConfigDir)
-    log.Panicln(runtimeconfig.App.Paths.LogsDir)
-    return
+    //log.Println(runtimeconfig.App.Server.Host)
+    //log.Println(runtimeconfig.App.Server.Port)
+    //log.Println(runtimeconfig.App.Paths.ConfigDir)
+    //og.Println(runtimeconfig.App.Paths.LogsDir)
+  
 
 
 
@@ -45,8 +41,13 @@ func main() {
     r.HandleFunc("/start/{service}", startHandler).Methods("GET")
 
 
-    fmt.Println("Listening on http://localhost:7712")
-    log.Fatal(http.ListenAndServe("127.0.0.1:7712", r))
+
+
+
+	addr := fmt.Sprintf("%s:%d", runtimeconfig.App.Server.Host, runtimeconfig.App.Server.Port)
+
+	fmt.Printf("Listening on http://%s\n", addr)
+	log.Fatal(http.ListenAndServe(addr, r))
 }
 
 
